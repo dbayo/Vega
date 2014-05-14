@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+ .left-bar {
+ 	background-color: #f7f7f9;
+ }
+
+ .left-bar .logo {
+ 	padding: 15px;
+ }
