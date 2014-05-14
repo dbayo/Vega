@@ -1,5 +1,8 @@
 Vega::Application.routes.draw do
   resources :cards
+  resources :explores
+  resources :educators
+  resources :books
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

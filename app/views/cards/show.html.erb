@@ -14,9 +14,9 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              cards_path, :class => 'btn'  %>
+              cards_path, :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_card_path(@card), :class => 'btn' %>
+              edit_card_path(@card), :class => 'btn btn-default' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               card_path(@card),
               :method => 'delete',

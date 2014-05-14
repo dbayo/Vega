@@ -35,33 +35,37 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="">
-      <div class="row-fluid">
-        <div class="span2 left-bar">
-          <div class="sidebar-nav">
-          	<%= link_to root_path do %>
-          		<%= image_tag "Logo.png", class: "logo", size: '200' %>
-          	<% end %>
-            <ul class="nav nav-list">
-              <li><%= link_to "Explore", "/explore"  %></li>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 sidebar">
+          <%= link_to root_path do %>
+            <%= image_tag "Logo.png", class: "logo center-block", size: '200' %>
+          <% end %>
+          <div class="nav nav-sidebar">
+            <ul class="nav nav-sidebar">
+              <li><%= link_to "Explore", "/explores"  %></li>
               <li><%= link_to "Educators", "/educators"  %></li>
-              <li><%= link_to "Book of knowledge", "/knowledge"  %></li>
+              <li><%= link_to "Book of knowledge", "/books"  %></li>
               <li><%= link_to "Contact", "/contact"  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span10">
+        <div class="col-lg-10 content">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
 
       <footer>
+        <div class="container">
+          <p class="text-muted">2014 - Vega</p>
+        </div>
       </footer>
-
-    </div> <!-- /container -->
-
+    </div>
   </body>
 </html>
