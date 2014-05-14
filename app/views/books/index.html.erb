@@ -2,27 +2,33 @@
   <h1>Book of knowledge</h1>
 </div>
 
+<script type="text/javascript">
+	var genre = "<%= params[:genre] %>";
+	var search = "<%= params[:search] %>";
+</script>
+
 <div class="row">
-  <div class="col-lg-12">
-    <div class="input-group">
-      <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+  	<div class="col-lg-12">	
+    	<div class="input-group">
+			<input type="text" class="form-control" name="search" value="<%= params[:search] %>" placeholder="Search by name...">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" onclick="setSearch()">Search</button>
+			</span>
+    	</div><!-- /input-group -->  
+	</div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 
 <div class="row">
 	<div class="col-lg-12">
-		<ul class="nav nav-pills nav-justified">
-			<li class="active"><a href="#">Webcams</a></li>
-			<li><a href="#">Flora</a></li>
-			<li><a href="#">Fauna</a></li>
-			<li><a href="#">Activities</a></li>
-			<li><a href="#">Trails</a></li>
-			<li><a href="#">Sites</a></li>
-			<li><a href="#">Games</a></li>
+		<ul class="nav nav-pills nav-justified menu2">
+			<li class="all"><%= link_to "All", "javascript:void(0);", onclick: "setGenre('all');" %></li>
+			<li class="webcams"><%= link_to "Webcams", "javascript:void(0);", onclick: "setGenre('webcams');" %></li>
+			<li class="flora"><%= link_to "Flora", "javascript:void(0);", onclick: "setGenre('flora');" %></li>
+			<li class="fauna"><%= link_to "Fauna", "javascript:void(0);", onclick: "setGenre('fauna');" %></li>
+			<li class="activities"><%= link_to "Activities", "javascript:void(0);", onclick: "setGenre('activities');" %></li>
+			<li class="trails"><%= link_to "Trails", "javascript:void(0);", onclick: "setGenre('trails');" %></li>
+			<li class="sites"><%= link_to "Sites", "javascript:void(0);", onclick: "setGenre('sites');" %></li>
+			<li class="games"><%= link_to "Games", "javascript:void(0);", onclick: "setGenre('games');" %></li>
 		</ul>
 	</div>
 </div>
@@ -35,3 +41,24 @@
 	</div>
 
 </div>
+
+<script>
+	$(".menu2 .<%= params[:genre] %>").addClass("active");
+
+	function setSearch(search) {
+		search = $("[name=search]").val();
+		window.location.href = "<%= books_path %>?genre="+genre+"&search="+search;
+	}
+
+	function setGenre(genre) {
+		genre = genre;
+		search = $("[name=search]").val();
+		window.location.href = "<%= books_path %>?genre="+genre+"&search="+search;
+	}
+	
+	$("[name=search]").keyup(function(event){
+	    if(event.keyCode == 13){
+	        setSearch();
+	    }
+	});
+</script>
