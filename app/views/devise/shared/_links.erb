@@ -1,0 +1,19 @@
+<div class="form-group" style="text-align: right;">
+	<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= link_to t(:Forgot_your_password), new_password_path(resource_name) %>
+		</div>
+	<% end -%>
+
+	<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= link_to t(:Didnt_receive_confirmation_instructions), new_confirmation_path(resource_name) %>
+		</div>
+	<% end -%>
+
+	<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= link_to t(:Didnt_receive_unlock_instructions), new_unlock_path(resource_name) %>
+		</div>
+	<% end -%>
+</div>

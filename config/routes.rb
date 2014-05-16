@@ -1,4 +1,5 @@
 Vega::Application.routes.draw do
+  devise_for :users
   resources :cards
   resources :explores
   resources :educators
@@ -8,7 +9,6 @@ Vega::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'cards#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -58,4 +58,6 @@ Vega::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root to: "home#index"
 end

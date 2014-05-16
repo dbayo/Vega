@@ -1,0 +1,21 @@
+<!-- Devise::Mailer.confirmation_instructions(@user).deliver -->
+<div class="content1 contentBorderBottom">
+	<div class="container">
+		<div>
+			<span>Resend </span>
+			<span class="subTitle">Confirmation </span>
+			<span>instructions</span>
+			<%= image_tag("Landing/lineadiagonal.png", :class => 'lineaDiagonal') %>
+		</div>
+		
+		<br><br>
+		<div>
+			
+		</div>
+		<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+			<%= f.email_field :email, :type => "email", :placeholder => "E-mail", :style => "width: 400px;" %><br>
+
+			<%= f.submit "Resend confirmation instructions", :class => "button" %>
+		<% end %>
+	</div>
+</div>
