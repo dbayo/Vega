@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal]
 
   # GET /cards
   # GET /cards.json
@@ -59,6 +59,10 @@ class CardsController < ApplicationController
       format.html { redirect_to cards_url }
       format.json { head :no_content }
     end
+  end
+
+  def openInfoModal
+    render :partial => "/cards/popUps/info"
   end
 
   private

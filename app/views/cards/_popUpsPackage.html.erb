@@ -1,0 +1,9 @@
+<!-- infoModal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<script type="text/javascript">
+	function openInfoModal(card_id) {
+		$('#infoModal').load('/cards/'+card_id+'/openInfoModal',function(result){
+		    $('#infoModal').modal({show:true});
+		});
+	}
+</script>

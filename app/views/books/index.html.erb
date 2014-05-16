@@ -39,8 +39,9 @@
 			<%= render partial: "card", locals: { card: card } %>
 		<% end %>
 	</div>
-
 </div>
+
+<%= render :partial => "/cards/popUpsPackage" %>
 
 <script>
 	$(".menu2 .<%= params[:genre] %>").addClass("active");

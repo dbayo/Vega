@@ -1,6 +1,10 @@
 Vega::Application.routes.draw do
   devise_for :users
-  resources :cards
+  resources :cards do
+    member do
+      get 'openInfoModal'
+    end
+  end
   resources :explores
   resources :educators
   resources :books
