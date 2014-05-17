@@ -10,7 +10,7 @@
 <div class="row">
   	<div class="col-lg-12">	
     	<div class="input-group">
-			<input type="text" class="form-control" name="search" value="<%= params[:search] %>" placeholder="Search by name...">
+			<input id="searchCards" type="text" class="form-control" name="search" value="<%= params[:search] %>" placeholder="Search by name...">
 			<span class="input-group-btn">
 				<button class="btn btn-default" type="button" onclick="setSearch()">Search</button>
 			</span>
@@ -21,42 +21,96 @@
 <div class="row">
 	<div class="col-lg-12">
 		<ul class="nav nav-pills nav-justified menu2">
-			<li class="all"><%= link_to "All", "javascript:void(0);", onclick: "setGenre('all');" %></li>
-			<li class="webcams"><%= link_to "Webcams", "javascript:void(0);", onclick: "setGenre('webcams');" %></li>
-			<li class="flora"><%= link_to "Flora", "javascript:void(0);", onclick: "setGenre('flora');" %></li>
-			<li class="fauna"><%= link_to "Fauna", "javascript:void(0);", onclick: "setGenre('fauna');" %></li>
-			<li class="activities"><%= link_to "Activities", "javascript:void(0);", onclick: "setGenre('activities');" %></li>
-			<li class="trails"><%= link_to "Trails", "javascript:void(0);", onclick: "setGenre('trails');" %></li>
-			<li class="sites"><%= link_to "Sites", "javascript:void(0);", onclick: "setGenre('sites');" %></li>
-			<li class="games"><%= link_to "Games", "javascript:void(0);", onclick: "setGenre('games');" %></li>
+			<li class="all" id="all"><%= link_to "All", "javascript:void(0);", onclick: "setGenre('all');" %></li>
+			<li class="webcams" id="webcams"><%= link_to "Webcams", "javascript:void(0);", onclick: "setGenre('webcams');" %></li>
+			<li class="flora" id="flora"><%= link_to "Flora", "javascript:void(0);", onclick: "setGenre('flora');" %></li>
+			<li class="fauna" id="fauna"><%= link_to "Fauna", "javascript:void(0);", onclick: "setGenre('fauna');" %></li>
+			<li class="activities" id="activities"><%= link_to "Activities", "javascript:void(0);", onclick: "setGenre('activities');" %></li>
+			<li class="trails" id="trails"><%= link_to "Trails", "javascript:void(0);", onclick: "setGenre('trails');" %></li>
+			<li class="sites" id="sites"><%= link_to "Sites", "javascript:void(0);", onclick: "setGenre('sites');" %></li>
+			<li class="games" id="games"><%= link_to "Games", "javascript:void(0);", onclick: "setGenre('games');" %></li>
 		</ul>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-lg-12">
-		<% @cards.each do |card| %>
-			<%= render partial: "card", locals: { card: card } %>
-		<% end %>
+	<div class="col-lg-12 searchResults">
+		<%= render partial: "searchResults" %>
 	</div>
 </div>
 
 <%= render :partial => "/cards/popUpsPackage" %>
 
 <script>
-	$(".menu2 .<%= params[:genre] %>").addClass("active");
+	// Set the filters from url params to active 
+	<% params[:genre].split(",").each do |genre| %>
+		$(".menu2 .<%= genre %>").addClass("active");
+	<% end %>
 
+	// Init genreArray to all selected filters
+	var genreArray = [];
+
+	lastSearch = '';
+	$('#searchCards').typing({
+	    stop: function (event, $elem) {
+			if (event.keyCode == 13) { submitFilter(); }     // enter
+			else if ($elem.val().length > 0) {
+				if (lastSearch != $elem.val()) {
+					lastSearch = $elem.val();
+					submitFilter();
+				}
+			} else {
+				submitFilter();
+			}
+	    },
+	    delay: 400
+	});
+
+	// On click button "Search"
 	function setSearch(search) {
-		search = $("[name=search]").val();
-		window.location.href = "<%= books_path %>?genre="+genre+"&search="+search;
-	}
-
-	function setGenre(genre) {
-		genre = genre;
-		search = $("[name=search]").val();
-		window.location.href = "<%= books_path %>?genre="+genre+"&search="+search;
+		submitFilter();
 	}
 	
+	// On select any filter
+	function setGenre(genre) {
+		// If click all filter, remove the other active filters
+		if (genre == "all") { 
+			$(".menu2 li.active").removeClass("active");
+		// If click another filter, remove "All" filter
+		} else {
+			$(".menu2 li.all").removeClass("active");
+		}
+		// Toggle the filter clicked
+		$(".menu2 li."+genre).toggleClass("active");
+
+		// If there are not any filter, active "All" filter
+		if ( $(".menu2 li.active").length == 0 ) { $(".menu2 li.all").addClass("active"); }
+
+		submitFilter();
+	}
+
+	// Set search and genre vars and redirect to refresh the page
+	function submitFilter() {
+		search = $("[name=search]").val();
+		genreArray = [];
+		$(".menu2 li.active").each(function(){ genreArray.push(this.id); });
+
+		$.ajax({
+			type : "POST",
+			url: '/getBooksSearchResults',
+			data : "authenticity_token=<%= CGI.escape(form_authenticity_token) %>"
+				   +"&search="+search
+				   +"&genre="+genreArray.join(","),
+			beforeSend: function(jqXHR, settings){
+				setLoading(".searchResults");
+			},
+			complete: function(jqXHR, textStatus){
+				$('#resultado').html(jqXHR.responseText);
+			}
+		});
+	}
+	
+	// On click Enter in the search
 	$("[name=search]").keyup(function(event){
 	    if(event.keyCode == 13){
 	        setSearch();

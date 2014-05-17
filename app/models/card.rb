@@ -7,11 +7,12 @@ class Card < ActiveRecord::Base
 		end
 	end
 
+	# input genre is string
 	def self.getGenre(genre)
 		if genre == "all"
 			where("")
 		else
-			where(:genre => genre)
+			where(:genre => genre.split(","))
 		end
 		
 	end

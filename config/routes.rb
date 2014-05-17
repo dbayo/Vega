@@ -7,6 +7,7 @@ Vega::Application.routes.draw do
   end
   resources :explores
   resources :educators
+  post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
 
   # The priority is based upon order of creation: first created -> highest priority.

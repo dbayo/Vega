@@ -3,4 +3,11 @@ class BooksController < ApplicationController
 		params[:genre] = "all" if params[:genre].blank?
 		@cards = Card.search(params[:search]).getGenre(params[:genre])
 	end
+
+	def getSearchResults
+		params[:genre] = "all" if params[:genre].blank?
+		@cards = Card.search(params[:search]).getGenre(params[:genre])
+
+		render :partial => '/js/books/getSearchResults.js.erb'
+	end
 end

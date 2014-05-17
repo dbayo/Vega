@@ -1,0 +1,8 @@
+<script>
+	removeLoading(".searchResults");
+	<% if @cards.blank? %>
+		$(".searchResults").html("<p class='text-muted text-center'>No hay resultados</p>");
+	<% else %>
+		$(".searchResults").html("<%= escape_javascript("#{render :partial => '/books/searchResults'} ").html_safe %>");
+	<% end %>
+</script>
