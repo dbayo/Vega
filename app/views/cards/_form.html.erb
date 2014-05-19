@@ -1,5 +1,9 @@
 <%= form_for @card, :html => { :class => 'form' } do |f| %>
   <div class="form-group">
+    <%= f.label :language, :class => 'control-label' %>
+    <%= f.select :language, options_for_select([ ["Spanish","es"], ["English","en"] ], @card.language), {}, {:class => 'form-control'} %>
+  </div>
+  <div class="form-group">
     <%= f.label :name, :class => 'control-label' %>
     <%= f.text_field :name, :class => 'form-control' %>
   </div>
@@ -9,7 +13,17 @@
   </div>
   <div class="form-group">
     <%= f.label :genre, :class => 'control-label' %>
-    <%= f.select :genre, options_for_select([ ["Webcams","webcams"], ["Flora","flora"], ["Fauna","fauna"], ["Activities","activities"], ["Trails","trails"], ["Sites","sites"], ["Games","games"] ]), {}, {:class => 'form-control'} %>
+    <%= f.select :genre, options_for_select([ ["Webcams","webcams"], ["Flora","flora"], ["Fauna","fauna"], ["Activities","activities"], ["Trails","trails"], ["Sites","sites"], ["Games","games"] ], @card.genre), {}, {:class => 'form-control'} %>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :bookOfKnowledge %> Show in book of knowledge?
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :educators %> Show in educators?
+    </label>
   </div>
 
   <div class="form-actions">
