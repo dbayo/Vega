@@ -9,6 +9,8 @@ Vega::Application.routes.draw do
   resources :educators
   post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
+  get '/contact' => 'home#contact'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
