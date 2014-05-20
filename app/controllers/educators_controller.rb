@@ -1,5 +1,10 @@
 class EducatorsController < ApplicationController
-	def index
+	def plan
+		@comments = Card.all
+		@cards = Card.educators
+	end
+
+	def teach
 
 	end
 end

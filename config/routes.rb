@@ -6,7 +6,9 @@ Vega::Application.routes.draw do
     end
   end
   resources :explores
-  resources :educators
+  get '/educators/plan' => 'educators#plan'
+  get '/educators/teach' => 'educators#teach'
+
   post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
   get '/contact' => 'home#contact'

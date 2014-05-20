@@ -8,7 +8,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px !important;
 }
-footer {
+body > .container-fluid > footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -26,11 +26,11 @@ footer {
 body > .container {
   padding: 60px 15px 0;
 }
-footer > .container .text-muted {
+body > .container-fluid > footer > .container .text-muted {
   margin: 20px 0;
 }
 
-footer > .container {
+body > .container-fluid > footer > .container {
   padding-right: 15px;
   padding-left: 15px;
 }

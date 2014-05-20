@@ -7,6 +7,10 @@ class Card < ActiveRecord::Base
 		where(:bookOfKnowledge => true)
 	end
 
+	def self.educators()
+		where(:educators => true)
+	end
+
 	def self.search(search)
 		if search
 			where('name LIKE ?', "%#{search}%")
