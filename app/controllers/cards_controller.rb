@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal, :uploadAttachment]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal, :uploadAttachment, :addComment]
 
   # GET /cards
   # GET /cards.json
@@ -78,6 +78,12 @@ class CardsController < ApplicationController
     attachment.nodeAttachments.destroy
     attachment.destroy
 
+    redirect_to(:back)
+  end
+
+  def addComment
+    @card.comments.create(:comment => params[:comment], :user_id => current_user.id)
+    
     redirect_to(:back)
   end
 

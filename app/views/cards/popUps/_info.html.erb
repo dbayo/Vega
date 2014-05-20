@@ -16,6 +16,7 @@
           </div>
         </div>
       </div>
+      <!-- Attachments -->
       <% if user_signed_in? %>
         <h4>Attachments</h4>
 
@@ -37,6 +38,27 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
           </a>
         </div>
+      <% end %>
+
+      <!-- Comments -->
+      <% if user_signed_in? %>
+        <h4>Comments</h4>
+        <%= form_tag addComment_card_path(@card), :multipart => true, :type => :post do %>
+          <%= text_area_tag :comment, nil, :class => 'form-control', :placeholder => "Add new comment here..." %>
+          <%= submit_tag "Add comment", :class => 'btn btn-primary' %>
+        <% end %>
+
+        <% @card.comments.each do |comment| %>
+          <div class="media">
+            <div class="media-body">
+              <h4 class="media-heading"><%= comment.user.name %> say at <%= comment.created_at %>:</h4>
+              <%= comment.comment %>
+            </div>
+          </div>
+          <div>
+            
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="modal-footer">

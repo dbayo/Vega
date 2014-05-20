@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520091328) do
+ActiveRecord::Schema.define(version: 20140520151600) do
 
   create_table "attachments", force: true do |t|
     t.string   "file_name"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20140520091328) do
     t.boolean  "bookOfKnowledge"
     t.boolean  "educators"
   end
+
+  create_table "comments", force: true do |t|
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["card_id"], name: "index_comments_on_card_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "node_attachments", force: true do |t|
     t.integer  "attachment_id"

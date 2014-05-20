@@ -5,6 +5,7 @@ Vega::Application.routes.draw do
       get 'openInfoModal'
       post 'uploadAttachment'
       delete 'removeAttachment'
+      post 'addComment'
     end
   end
   resources :explores
