@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal, :uploadPhoto]
 
   # GET /cards
   # GET /cards.json
@@ -63,6 +63,14 @@ class CardsController < ApplicationController
 
   def openInfoModal
     render :partial => "/cards/popUps/info"
+  end
+
+  def uploadPhoto
+    if !params[:upload].blank?
+      attachment = @card.attachments.create(:file_name => params[:upload], :url => params[:upload], :user_id => current_user.id)
+    end
+
+    redirect_to(:back)
   end
 
   private

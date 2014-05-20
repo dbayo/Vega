@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519122351) do
+ActiveRecord::Schema.define(version: 20140520091328) do
+
+  create_table "attachments", force: true do |t|
+    t.string   "file_name"
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachments", ["user_id", "user_type"], name: "index_attachments_on_user_id_and_user_type", using: :btree
 
   create_table "cards", force: true do |t|
     t.string   "name"
@@ -22,6 +33,14 @@ ActiveRecord::Schema.define(version: 20140519122351) do
     t.string   "language"
     t.boolean  "bookOfKnowledge"
     t.boolean  "educators"
+  end
+
+  create_table "node_attachments", force: true do |t|
+    t.integer  "attachment_id"
+    t.integer  "nodeable_id"
+    t.string   "nodeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

@@ -6,7 +6,8 @@
 		<div class="media-body">
 			<h4 class="media-heading"><a href="javascript:void(0)" onclick="openInfoModal('<%= card.id.to_s %>')"><%= card.name %></a></h4>
 			<div class="text-justify"><%= card.description %></div>
-			<span class="pull-right text-muted"><%= card.genre %></span>
+			<span class="pull-right text-muted"><%= card.genre %></span><br>
+			<span class="pull-right text-muted">Fotos: <%= card.attachments.count %></span>
 		</div>
 	</div>
 </div>

@@ -16,9 +16,35 @@
           </div>
         </div>
       </div>
+      <% if user_signed_in? %>
+        <h4>Attachments</h4>
+
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <% @card.attachments.each do |attachment| %>
+              <div class="item">
+                <%= attachment.getPhoto(105,105).html_safe %>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+      <% end %>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   </div>
 </div>
+
+<script>
+  $(".carousel-inner .item:first").addClass("active");
+</script>

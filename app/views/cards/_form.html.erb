@@ -32,3 +32,29 @@
                 cards_path, :class => 'btn btn-default' %>
   </div>
 <% end %>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadPhotoModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<%= form_tag 'uploadPhoto', :multipart => true, :type => :post do %>
+<div class="modal fade" id="uploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">SUBE TU IMAGEN O VÍDEO</h4>
+      </div>
+      <div class="modal-body">
+        <%= file_field_tag "upload", :class => "file_modalupload_input" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= submit_tag 'Subir Foto', :class => "btn btn-primary file_modalupload_button" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

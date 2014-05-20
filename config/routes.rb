@@ -3,6 +3,7 @@ Vega::Application.routes.draw do
   resources :cards do
     member do
       get 'openInfoModal'
+      post 'uploadPhoto'
     end
   end
   resources :explores
@@ -12,6 +13,8 @@ Vega::Application.routes.draw do
   post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
   get '/contact' => 'home#contact'
+
+  root to: "home#index"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -67,6 +70,4 @@ Vega::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  root to: "home#index"
 end

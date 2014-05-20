@@ -4,17 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :set_locale
 
-  def set_locale
-	    if user_signed_in? 
-			if current_user.language.blank?
-				extract_locale_from_accept_language_header
-			else
-				I18n.locale = current_user.language
-			end
-	    else
-			session[:lang] = params[:lang] if params[:lang]
-			I18n.locale = session[:lang] || extract_locale_from_accept_language_header
-	    end
+	def set_locale
+		session[:lang] = params[:lang] if params[:lang]
+		I18n.locale = session[:lang] || extract_locale_from_accept_language_header
 	end
 
 	private
