@@ -3,7 +3,8 @@ Vega::Application.routes.draw do
   resources :cards do
     member do
       get 'openInfoModal'
-      post 'uploadPhoto'
+      post 'uploadAttachment'
+      delete 'removeAttachment'
     end
   end
   resources :explores

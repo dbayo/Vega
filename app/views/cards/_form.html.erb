@@ -33,14 +33,43 @@
   </div>
 <% end %>
 
+<h3>Attachments</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th><%= t(:name) %></th>
+      <th><%= t(:photo) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @card.attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.id %></td>
+        <td><%= attachment.file_name %></td>
+        <td style="width: 50%" class="text-justify"><%= attachment.getPhoto(105,105).html_safe %></td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      removeAttachment_card_path(attachment),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadPhotoModal">
+<button class="btn btn-primary" data-toggle="modal" data-target="#uploadAttachmentModal">
   Launch demo modal
 </button>
 
 <!-- Modal -->
-<%= form_tag 'uploadPhoto', :multipart => true, :type => :post do %>
-<div class="modal fade" id="uploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<%= form_tag 'uploadAttachment', :multipart => true, :type => :post do %>
+<div class="modal fade" id="uploadAttachmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
