@@ -50,10 +50,16 @@
           <% end %>
           <div class="nav nav-sidebar">
             <ul class="nav nav-sidebar">
-              <li><%= link_to "Explore", "/explores"  %></li>
-              <li><%= link_to "Educators", "/educators/plan"  %></li>
-              <li><%= link_to "Book of knowledge", "/books"  %></li>
-              <li><%= link_to "Contact", "/contact"  %></li>
+              <li class="<%= 'active' if @navSidebar == "explore" %>"><%= link_to "Explore", "/explores"  %></li>
+              <li class="<%= 'active' if @navSidebar == "educators" %>"><%= link_to "Educators", "/educators/plan"  %></li>
+              <li class="<%= 'active' if @navSidebar == "book" %>"><%= link_to "Book of knowledge", "/books"  %></li>
+              <li class="<%= 'active' if @navSidebar == "contact" %>"><%= link_to "Contact", "/contact"  %></li>
+              <li>
+                <ul class="nav nav-pills nav-justified">
+                  <li class="<%= 'active' if (I18n.locale == :es) %>"><%= link_to "Spanish", setLanguage_path + "?lang=es"  %></li>
+                  <li class="<%= 'active' if (I18n.locale == :en) %>"><%= link_to "English", setLanguage_path + "?lang=en"  %></li>
+                </ul>
+              </li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

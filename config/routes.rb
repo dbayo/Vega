@@ -15,6 +15,8 @@ Vega::Application.routes.draw do
   post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
   get '/contact' => 'home#contact'
+  get '/setLanguage' => 'home#setLanguage'
+  
 
   root to: "home#index"
 
