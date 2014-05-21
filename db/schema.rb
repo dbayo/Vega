@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520151600) do
+ActiveRecord::Schema.define(version: 20140521094132) do
 
   create_table "attachments", force: true do |t|
     t.string   "file_name"
@@ -46,10 +46,28 @@ ActiveRecord::Schema.define(version: 20140520151600) do
   add_index "comments", ["card_id"], name: "index_comments_on_card_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "news", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "active"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "node_attachments", force: true do |t|
     t.integer  "attachment_id"
     t.integer  "nodeable_id"
     t.string   "nodeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teacher_comments", force: true do |t|
+    t.string   "teacherName"
+    t.text     "description"
+    t.boolean  "active"
+    t.string   "language"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

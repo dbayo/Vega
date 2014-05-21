@@ -1,0 +1,12 @@
+<div class="well">
+	<div class="media">
+		<a class="pull-left" href="#">
+			<%= news.attachments.first.getPhoto(105,105).html_safe %>
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading"><%= news.title %></h4>
+			<div class="text-justify"><%= news.description %></div>
+			<span class="pull-right text-muted"><%= news.language %></span><br>
+		</div>
+	</div>
+</div>

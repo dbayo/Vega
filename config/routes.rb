@@ -10,6 +10,13 @@ Vega::Application.routes.draw do
   end
   resources :explores
   get '/educators/plan' => 'educators#plan'
+  get '/educators/plan/edit' => 'educators#editPlan'
+  post '/educators/plan/addNews' => 'educators#addNews'
+  delete '/educators/plan/removeNews/:id' => 'educators#removeNews'
+
+  post '/educators/plan/addTeacherComment' => 'educators#addTeacherComment'
+  delete '/educators/plan/removeTeacherComment/:id' => 'educators#removeTeacherComment'
+
   get '/educators/teach' => 'educators#teach'
 
   post '/getBooksSearchResults' => 'books#getSearchResults'
