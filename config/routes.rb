@@ -1,30 +1,37 @@
 Vega::Application.routes.draw do
   devise_for :users
-  resources :cards do
-    member do
-      get 'openInfoModal'
-      post 'uploadAttachment'
-      delete 'removeAttachment'
-      post 'addComment'
-    end
-  end
+  
   resources :explores
   get '/educators/plan' => 'educators#plan'
-  get '/educators/plan/edit' => 'educators#editPlan'
-  post '/educators/plan/addNews' => 'educators#addNews'
-  delete '/educators/plan/removeNews/:id' => 'educators#removeNews'
-
-  post '/educators/plan/addTeacherComment' => 'educators#addTeacherComment'
-  delete '/educators/plan/removeTeacherComment/:id' => 'educators#removeTeacherComment'
-
   get '/educators/teach' => 'educators#teach'
 
   post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
   get '/contact' => 'home#contact'
   get '/setLanguage' => 'home#setLanguage'
-  
 
+  get '/admin' => 'admin#index'
+  # Educators/plan
+  get '/admin/educators/plan' => 'admin#editEducatorsPlan'
+  post '/admin/educators/plan/addNews' => 'admin#addNews'
+  delete '/admin/educators/plan/removeNews/:id' => 'admin#removeNews'
+  post '/admin/educators/plan/addTeacherComment' => 'admin#addTeacherComment'
+  delete '/admin/educators/plan/removeTeacherComment/:id' => 'admin#removeTeacherComment'
+  # END - Educators/plan
+
+  get '/admin/educators/teach' => 'admin#editEducatorsTeach'
+
+  scope '/admin' do
+    resources :cards do
+      member do
+        get 'openInfoModal'
+        post 'uploadAttachment'
+        delete 'removeAttachment'
+        post 'addComment'
+      end
+    end
+  end
+  
   root to: "home#index"
 
 

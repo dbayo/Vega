@@ -1,21 +1,15 @@
-class EducatorsController < ApplicationController
-	before_filter :setNavSidebar
-	def plan
-		@comments = Card.all
-		@cards = Card.educators
-		@news = News.where(:active => true, :language => I18n.locale)
-		@teacherComments = TeacherComment.where(:active => true, :language => I18n.locale)
-		@totalPictures = Attachment.count
-		@totalComments = Comment.count
-		@totalUsers = User.count
-		@totalNewUsers = User.where("created_at > ?", 1.month.ago).count
+class AdminController < ApplicationController
+	def index
+
 	end
 
-	def editPlan
+	def editEducatorsPlan
 		@comments = Card.all
 		@cards = Card.educators
 		@news = News.all
 		@teacherComments = TeacherComment.all
+
+		render :template => "/admin/educators/editPlan"
 	end
 
 	# NEWS
@@ -52,12 +46,9 @@ class EducatorsController < ApplicationController
 	end
 	# END - TEACHER COMMENTS
 
-	def teach
+	def editEducatorsTeach
 
+		render :template => "/admin/educators/editTeach"
 	end
 
-	private
-	def setNavSidebar
-		@navSidebar = "educators"
-	end
 end

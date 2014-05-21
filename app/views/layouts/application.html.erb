@@ -54,6 +54,7 @@
               <li class="<%= 'active' if @navSidebar == "educators" %>"><%= link_to "Educators", "/educators/plan"  %></li>
               <li class="<%= 'active' if @navSidebar == "book" %>"><%= link_to "Book of knowledge", "/books"  %></li>
               <li class="<%= 'active' if @navSidebar == "contact" %>"><%= link_to "Contact", "/contact"  %></li>
+              <li class="<%= 'active' if @navSidebar == "admin" %>"><%= link_to "Admin", "/admin"  %></li>
               <li>
                 <ul class="nav nav-pills nav-justified">
                   <li class="<%= 'active' if (I18n.locale == :es) %>"><%= link_to "Spanish", setLanguage_path + "?lang=es"  %></li>

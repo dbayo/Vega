@@ -1,7 +1,7 @@
-<ul class="nav nav-tabs nav-justified">
-	<li class="active"><a href="/educators/plan">Plan</a></li>
-	<li><a href="/educators/teach">Teach</a></li>
-</ul>
+<%= render partial: "/admin/menu" %>
+<div class="page-header">
+  <h1>Educators / Plan <small>Admin edit page</small></h1>
+</div>
 
 <h3>Teacher Comments</h3>
 
@@ -24,7 +24,7 @@
         <td><%= teacherComment.active %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      "/educators/plan/removeTeacherComment/"+teacherComment.id.to_s,
+                      "/admin/educators/plan/removeTeacherComment/"+teacherComment.id.to_s,
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -40,7 +40,7 @@ Crear una comentario nuevo
 </button>
 
 <!-- Modal -->
-<%= form_tag 'addTeacherComment', :multipart => true, :type => :post do %>
+<%= form_tag '/admin/educators/plan/addTeacherComment', :multipart => true, :type => :post do %>
 <div class="modal fade" id="addTeacherCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -76,8 +76,8 @@ Crear una comentario nuevo
       <th>Id</th>
       <th><%= t(:Title) %></th>
       <th><%= t(:Description) %></th>
-      <th><%= t(:Photo) %></th>
       <th><%= t(:Active) %></th>
+      <th><%= t(:Photo) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -91,7 +91,7 @@ Crear una comentario nuevo
         <td style="width: 50%" class="text-justify"><%= news.attachments.first.getPhoto(105,105).html_safe %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      "/educators/plan/removeNews/"+news.id.to_s,
+                      "/admin/educators/plan/removeNews/"+news.id.to_s,
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -107,7 +107,7 @@ Crear una nueva noticia
 </button>
 
 <!-- Modal -->
-<%= form_tag 'addNews', :multipart => true, :type => :post do %>
+<%= form_tag '/admin/educators/plan/addNews', :multipart => true, :type => :post do %>
 <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
