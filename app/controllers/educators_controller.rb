@@ -10,7 +10,7 @@ class EducatorsController < ApplicationController
 	end
 
 	def teach
-		@cards = Card.educators
+		@cards = Card.educators.language(I18n.locale)
 	end
 
 	private

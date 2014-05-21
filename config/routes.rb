@@ -7,6 +7,7 @@ Vega::Application.routes.draw do
 
   post '/getBooksSearchResults' => 'books#getSearchResults'
   resources :books
+
   get '/contact' => 'home#contact'
   get '/setLanguage' => 'home#setLanguage'
 
@@ -24,13 +25,13 @@ Vega::Application.routes.draw do
   scope '/admin' do
     resources :cards do
       member do
-        get 'openInfoModal'
         post 'uploadAttachment'
         delete 'removeAttachment'
         post 'addComment'
       end
     end
   end
+  get '/cards/:id/openInfoModal' => 'cards#openInfoModal'
   
   root to: "home#index"
 
