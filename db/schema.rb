@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521094132) do
+ActiveRecord::Schema.define(version: 20140522082445) do
 
   create_table "attachments", force: true do |t|
     t.string   "file_name"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 20140521094132) do
     t.integer  "attachment_id"
     t.integer  "nodeable_id"
     t.string   "nodeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "system_vars", force: true do |t|
+    t.string   "code"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

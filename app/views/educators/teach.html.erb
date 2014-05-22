@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h3>Educational outcome</h3>
-		<div>Lorep ipsum</div>
+		<p><%= simple_format(@educationalOutcome) %></p>
 	</div>
 </div>
 
@@ -22,7 +22,22 @@
 
 	<div class="col-lg-6">
 		<h3>Resources</h3>
-		<div>Lorep ipsum</div>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>Id</th>
+		      <th><%= t(:name) %></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @resources.each do |resource| %>
+		      <tr>
+		        <td><%= resource.id %></td>
+		        <td><%= link_to resource.file_name, resource.file_name.to_s, :target => "_blank" %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
 	</div>
 </div>
 

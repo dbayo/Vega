@@ -21,6 +21,10 @@ Vega::Application.routes.draw do
   # END - Educators/plan
 
   get '/admin/educators/teach' => 'admin#editEducatorsTeach'
+  post '/admin/educators/teach/editEducationalOutcome' => 'admin#editEducationalOutcome'
+  post '/admin/educators/teach/addResource' => 'admin#addResource'
+  delete '/admin/educators/teach/removeResource/:id' => 'admin#removeResource'
+  
 
   scope '/admin' do
     resources :cards do

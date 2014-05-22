@@ -10,7 +10,9 @@ class EducatorsController < ApplicationController
 	end
 
 	def teach
-		@cards = Card.educators.language(I18n.locale)
+		@cards = Card.educators.language(I18n.locale).where(:genre => "activities")
+		@educationalOutcome = SystemVar.getDescription("educationalOutcome")
+		@resources = SystemVar.initSystemVar("resources").attachments
 	end
 
 	private

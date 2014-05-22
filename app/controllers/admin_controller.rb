@@ -47,8 +47,32 @@ class AdminController < ApplicationController
 	# END - TEACHER COMMENTS
 
 	def editEducatorsTeach
+		@educationalOutcome = SystemVar.getDescription("educationalOutcome")
+		@cards = Card.educators.language(I18n.locale).where(:genre => "activities")
+		@attachments = SystemVar.initSystemVar("resources").attachments
 
 		render :template => "/admin/educators/editTeach"
+	end
+
+	def editEducationalOutcome
+		SystemVar.setDescription("educationalOutcome", params[:description])
+		redirect_to(:back)
+	end
+
+	def addResource
+		resource = SystemVar.initSystemVar("resources")
+		if !params[:upload].blank?
+	      	attachment = resource.attachments.create(:file_name => params[:upload], :url => params[:upload], :user_id => current_user.id)
+	    end
+		redirect_to(:back)
+	end
+
+	def removeResource
+		attachment = Attachment.find(params[:id])
+	    attachment.nodeAttachments.destroy
+	    attachment.destroy
+
+	    redirect_to(:back)
 	end
 
 end
