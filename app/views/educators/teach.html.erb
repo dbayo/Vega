@@ -2,3 +2,28 @@
 	<li><a href="/educators/plan">Plan</a></li>
 	<li class="active"><a href="/educators/teach">Teach</a></li>
 </ul>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h3>Educational outcome</h3>
+		<div>Lorep ipsum</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<h3>Activities</h3>
+		<div class="col-lg-12">
+			<% @cards.each do |card| %>
+				<%= render partial: "/books/card", locals: { card: card } %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="col-lg-6">
+		<h3>Resources</h3>
+		<div>Lorep ipsum</div>
+	</div>
+</div>
+
+<%= render :partial => "/cards/popUpsPackage" %>
