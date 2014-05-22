@@ -1,5 +1,8 @@
 Vega::Application.routes.draw do
   devise_for :users
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
   
   resources :explores
   get '/educators/plan' => 'educators#plan'
@@ -10,6 +13,7 @@ Vega::Application.routes.draw do
 
   get '/contact' => 'home#contact'
   get '/setLanguage' => 'home#setLanguage'
+  get '/history' => 'home#history'
 
   get '/admin' => 'admin#index'
   # Educators/plan
@@ -37,8 +41,7 @@ Vega::Application.routes.draw do
   end
   get '/cards/:id/openInfoModal' => 'cards#openInfoModal'
   
-  root to: "home#index"
-
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
