@@ -6,7 +6,7 @@
 <%= form_tag '/admin/educators/teach/editEducationalOutcome', :multipart => true, :type => :post do %>
 	<div class="form-group">
 		<label for="description">Educational Outcome</label>
-		<%= text_area_tag :description, @educationalOutcome, :class => 'form-control' %>
+		<%= text_area_tag :description, @educationalOutcome, :class => 'form-control', rows: 8 %>
 	</div>
     <%= submit_tag 'Actualizar', :class => "btn btn-primary file_modalupload_button" %>
 <% end %>

@@ -5,6 +5,7 @@ class EducatorsController < ApplicationController
 		@teacherComments = TeacherComment.where(:active => true, :language => I18n.locale)
 		@totalPictures = Attachment.count
 		@totalComments = Comment.count
+		@totalResources = @resources = SystemVar.initSystemVar("resources").attachments.count
 		@totalUsers = User.count
 		@totalNewUsers = User.where("created_at > ?", 1.month.ago).count
 	end
