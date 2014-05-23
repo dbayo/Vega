@@ -46,6 +46,8 @@ gem 'angularjs-rails'
 gem 'carrierwave'
 gem 'rmagick', '2.13.1'
 
+gem "byebug"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

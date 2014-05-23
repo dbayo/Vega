@@ -7,13 +7,21 @@ class HomeController < ApplicationController
 
 	def index
 		if user_signed_in?
-  			render :action => 'index', :layout => 'application'
-  		else
-  			render :action => 'index', :layout => 'landing'
-  		end
-  	end
+      redirect_to( explores_path)
+		else
+			render :action => 'index', :layout => 'landing'
+		end
+  end
 
-  	def contact
-  		@navSidebar = "contact"
-  	end
+  def history
+    if user_signed_in?
+      redirect_to( explores_path)
+    else
+      render :action => 'history', :layout => 'landing'
+    end
+  end
+
+	def contact
+		@navSidebar = "contact"
+	end
 end

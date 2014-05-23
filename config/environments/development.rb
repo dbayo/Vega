@@ -28,4 +28,12 @@ Vega::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.to_prepare do
+    Devise::SessionsController.layout "landing"
+    Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "landing" }
+    Devise::ConfirmationsController.layout "landing"
+    Devise::UnlocksController.layout "landing"            
+    Devise::PasswordsController.layout "landing"        
+  end
 end
