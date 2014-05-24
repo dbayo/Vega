@@ -4,6 +4,10 @@ class Card < ActiveRecord::Base
 
   	has_many :comments
 
+  	has_many :funFacts
+
+  	has_many :quizzs
+
 	def self.language(lang)
 		where(:language => lang)
 	end

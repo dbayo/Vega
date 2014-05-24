@@ -40,36 +40,6 @@
         </div>
       <% end %>
 
-      <!-- Fun Facts -->
-      <h4>Fun Facts</h4>
-      <% @card.funFacts.each do |funFact| %>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <%= funFact.description %>
-          </div>
-        </div>
-      <% end %>
-
-      <!-- Quizz -->
-      <h4>Quizz</h4>
-      <% @card.quizzs.each do |quizz| %>
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">Responde la pregunta</div>
-          <div class="panel-body">
-            <p><%= quizz.description %></p>
-          </div>
-
-          <!-- List group -->
-          <ul class="list-group">
-            <li class="list-group-item">A.- <%= quizz.trueAnswer %></li>
-            <li class="list-group-item">B.- <%= quizz.falseAnswer1 %></li>
-            <li class="list-group-item">C.- <%= quizz.falseAnswer2 %></li>
-            <li class="list-group-item">D.- <%= quizz.falseAnswer3 %></li>
-          </ul>
-        </div>
-      <% end %>
-
       <!-- Comments -->
       <% if user_signed_in? %>
         <h4>Comments</h4>

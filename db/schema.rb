@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522082445) do
+ActiveRecord::Schema.define(version: 20140524135817) do
 
   create_table "attachments", force: true do |t|
     t.string   "file_name"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20140522082445) do
   add_index "comments", ["card_id"], name: "index_comments_on_card_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "fun_facts", force: true do |t|
+    t.text     "description"
+    t.string   "language"
+    t.boolean  "active"
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fun_facts", ["card_id"], name: "index_fun_facts_on_card_id", using: :btree
+
   create_table "news", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -62,6 +73,21 @@ ActiveRecord::Schema.define(version: 20140522082445) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "quizzs", force: true do |t|
+    t.text     "description"
+    t.text     "trueAnswer"
+    t.text     "falseAnswer1"
+    t.text     "falseAnswer2"
+    t.text     "falseAnswer3"
+    t.string   "language"
+    t.boolean  "active"
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quizzs", ["card_id"], name: "index_quizzs_on_card_id", using: :btree
 
   create_table "system_vars", force: true do |t|
     t.string   "code"

@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal, :uploadAttachment, :addComment]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :openInfoModal, :uploadAttachment, :addComment, :addQuizz, :addFunFact]
 
   # GET /cards
   # GET /cards.json
@@ -62,7 +62,15 @@ class CardsController < ApplicationController
   end
 
   def openInfoModal
-    render :partial => "/cards/popUps/info"
+    if @card.genre == "activities"
+      render :partial => "/cards/popUps/activity"
+    elsif ["flora","fauna","sites"].include?(@card.genre)
+      render :partial => "/cards/popUps/info"
+    elsif ["webcam","games"].include?(@card.genre)
+      render :partial => "/cards/popUps/extra"
+    elsif ["trail","snorkel"].include?(@card.genre)
+      render :partial => "/cards/popUps/trail"
+    end
   end
 
   def uploadAttachment
@@ -78,6 +86,26 @@ class CardsController < ApplicationController
     attachment.nodeAttachments.destroy
     attachment.destroy
 
+    redirect_to(:back)
+  end
+
+  def addQuizz
+    @card.quizzs.create(description: params[:description], trueAnswer: params[:trueAnswer], falseAnswer1: params[:falseAnswer1], falseAnswer2: params[:falseAnswer2], falseAnswer3: params[:falseAnswer3], language: "es", active: true)
+    redirect_to(:back)
+  end
+
+  def removeQuizz
+    Quizz.find(params[:id]).destroy
+    redirect_to(:back)
+  end
+
+  def addFunFact
+    @card.funFacts.create(description: params[:description], language: "es", active: true)
+    redirect_to(:back)
+  end
+
+  def removeFunFact
+    FunFact.find(params[:id]).destroy
     redirect_to(:back)
   end
 

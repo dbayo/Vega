@@ -87,3 +87,134 @@ Subir nueva foto
   </div>
 </div>
 <% end %>
+
+<!-- QUIZZ -->
+<h3>Quizz</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th><%= t(:Description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @card.quizzs.each do |quizz| %>
+      <tr>
+        <td><%= quizz.id %></td>
+        <td><%= quizz.description %></td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      "/admin/cards/"+quizz.id.to_s+"/removeQuizz",
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#addQuizzModal">
+Crear un nuevo quizz
+</button>
+
+<!-- Modal -->
+<%= form_tag 'addQuizz', :multipart => true, :type => :post do %>
+<div class="modal fade" id="addQuizzModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Crear un nuevo quizz</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="title">Description</label>
+          <%= text_area_tag :description, nil, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="title">True answer</label>
+          <%= text_area_tag :trueAnswer, nil, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="title">False answer 1</label>
+          <%= text_area_tag :falseAnswer1, nil, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="title">False answer 2</label>
+          <%= text_area_tag :falseAnswer2, nil, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label for="title">False answer 3</label>
+          <%= text_area_tag :falseAnswer3, nil, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= submit_tag 'Crear quizz', :class => "btn btn-primary file_modalupload_button" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<!-- Fun Facts -->
+<h3>Fun Facts</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th><%= t(:Description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @card.funFacts.each do |funFact| %>
+      <tr>
+        <td><%= funFact.id %></td>
+        <td><%= funFact.description %></td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      "/admin/cards/"+funFact.id.to_s+"/removeFunFact",
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#addFunFactModal">
+Crear un nuevo fun fact
+</button>
+
+<!-- Modal -->
+<%= form_tag 'addFunFact', :multipart => true, :type => :post do %>
+<div class="modal fade" id="addFunFactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Crear un nuevo fun fact</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="title">Description</label>
+          <%= text_area_tag :description, nil, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= submit_tag 'Crear fun fact', :class => "btn btn-primary file_modalupload_button" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

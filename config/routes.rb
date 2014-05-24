@@ -35,6 +35,10 @@ Vega::Application.routes.draw do
       member do
         post 'uploadAttachment'
         delete 'removeAttachment'
+        post 'addQuizz'
+        delete 'removeQuizz'
+        post 'addFunFact'
+        delete 'removeFunFact'
         post 'addComment'
       end
     end
