@@ -68,6 +68,18 @@
     </div>
 </section>
 
+<div class="row">
+	<div class="col-lg-4">
+		<%= FunFact.first(:offset => rand(FunFact.count)).description unless FunFact.count == 0 %>
+	</div>
+	<div class="col-lg-4">
+		<%= News.last(2)[0].description %>
+	</div>
+	<div class="col-lg-4">
+		<%= News.last(2)[1].description %>
+	</div>
+</div>
+
 <script>
 $(function() {
   $("#explore").click(function(){
